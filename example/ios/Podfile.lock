@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_map_view (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `.symlinks/flutter/ios`)
+  - flutter_map_view (from `.symlinks/plugins/flutter_map_view/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: ".symlinks/flutter/ios"
+  flutter_map_view:
+    :path: ".symlinks/plugins/flutter_map_view/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  flutter_map_view: 3988d312b5babe5f28581b029f1b9e8250eca58b
+
+PODFILE CHECKSUM: ebd43b443038e611b86ede96e613bd6033c49497
+
+COCOAPODS: 1.7.4
