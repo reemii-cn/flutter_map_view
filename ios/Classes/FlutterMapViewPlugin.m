@@ -1,9 +1,11 @@
 #import "FlutterMapViewPlugin.h"
-#import <flutter_map_view/flutter_map_view-Swift.h>
+#import "FlutterMapView.h"
 
 @implementation FlutterMapViewPlugin
-+ (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-    [registrar registerViewFactory: [[SwiftFlutterMapViewPlugin alloc] initWithMessenger:[registrar messenger]] withId:@"flutter_map_view"];
-}
-@end
 
++ (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
+    FlutterMapViewFactory *mapViewFactory = [[FlutterMapViewFactory alloc] initWithMessenger:registrar.messenger];
+    [registrar registerViewFactory:mapViewFactory withId:@"flutter_map_view"];
+}
+
+@end

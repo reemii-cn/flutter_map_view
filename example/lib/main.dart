@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: UIMapWidget(),
+          child: UIMapView(),
         ),
       ),
     );

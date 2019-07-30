@@ -1,40 +1,32 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 
 const _viewType = 'flutter_map_view';
 
-typedef void PdfVieControllerwWidgetCreatedCallback(
-    MapViewController controller);
+typedef void MapViewControllerCreatedCallback(MapViewController controller);
 
-class UIMapWidget extends StatefulWidget {
-
-  final PdfVieControllerwWidgetCreatedCallback onActivityIndicatorWidgetCreated;
-  // pdf路径参数
+class UIMapView extends StatefulWidget {
+  final MapViewControllerCreatedCallback onActivityIndicatorWidgetCreated;
   final param;
-  final CallFlutterLocal callFlutterLocal;
 
-  const UIMapWidget(
-      {Key key,
-        this.onActivityIndicatorWidgetCreated,
-        this.param,
-        this.callFlutterLocal})
+  const UIMapView({Key key, this.onActivityIndicatorWidgetCreated, this.param})
       : super(key: key);
 
   @override
-  _UIMapWidgetState createState() => _UIMapWidgetState();
+  _UIMapViewState createState() => _UIMapViewState();
 }
 
-class _UIMapWidgetState extends State<UIMapWidget> {
+class _UIMapViewState extends State<UIMapView> {
   @override
   Widget build(BuildContext context) {
     return UiKitView(
       viewType: _viewType,
       onPlatformViewCreated: _onPlatformViewCreated,
-      creationParamsCodec: new StandardMessageCodec(),
       creationParams: widget.param,
-    );;
+      creationParamsCodec: new StandardMessageCodec(),
+    );
   }
 
   void _onPlatformViewCreated(int id) {
@@ -43,10 +35,7 @@ class _UIMapWidgetState extends State<UIMapWidget> {
     }
     widget.onActivityIndicatorWidgetCreated(new MapViewController._(id));
   }
-
 }
-
-
 
 class MapViewController {
   MapViewController._(int id)
@@ -54,27 +43,7 @@ class MapViewController {
 
   final MethodChannel _channel;
 
-  Future<void> edit() async {
-    return _channel.invokeMethod('edit');
+  Future<void> userLocation() async {
+    return _channel.invokeMethod('userLocation');
   }
-
-  Future<void> changeLineSize(int lineWidth) async {
-    return _channel.invokeMethod('changeLineSize', lineWidth);
-  }
-
-  Future<void> changeLineColor(String lineColor) async {
-    return _channel.invokeMethod('changeLineColor', lineColor);
-  }
-}
-
-class CallFlutterLocal {
-  final FutureOr<void> Function(List<dynamic>) getLinePath;
-  final FutureOr<List<Map<String, dynamic>>> Function(int pageNum)
-  getCurrentPage;
-  final FutureOr<void> Function(int totalCount) getTotalCount;
-
-  CallFlutterLocal(
-      {@required this.getLinePath,
-        @required this.getCurrentPage,
-        @required this.getTotalCount});
 }

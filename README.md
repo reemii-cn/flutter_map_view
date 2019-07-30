@@ -1,6 +1,6 @@
 # flutter_map_view
 
-A new Flutter Plugin.
+A new Flutter project.
 
 ## Getting Started
 

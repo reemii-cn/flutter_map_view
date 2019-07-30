@@ -4,9 +4,9 @@
 Pod::Spec.new do |s|
   s.name             = 'flutter_map_view'
   s.version          = '0.0.1'
-  s.summary          = 'A new Flutter Plugin.'
+  s.summary          = 'A new Flutter project.'
   s.description      = <<-DESC
-A new Flutter Plugin.
+A new Flutter project.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
@@ -15,7 +15,6 @@ A new Flutter Plugin.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.swift_version = '4.2'
 
   s.ios.deployment_target = '8.0'
 end
