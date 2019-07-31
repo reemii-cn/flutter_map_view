@@ -42,6 +42,22 @@
         _viewId = viewId;
         
         _mapView = [[MKMapView alloc] initWithFrame:frame];
+        _mapView.userTrackingMode = MKUserTrackingModeNone;
+        
+        NSString* channelName = [NSString stringWithFormat:@"flutter_map_view_%lld", viewId];
+        FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:channelName binaryMessenger:messenger];
+        __weak __typeof__(self) weakSelf = self;
+        [channel setMethodCallHandler:^(FlutterMethodCall * _Nonnull call, FlutterResult  _Nonnull result) {
+            [weakSelf onMethodCall:call result:result];
+        }];
+        
+        NSArray *pointArr = args;
+        for (NSDictionary *dict in pointArr) {
+            MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+            annotation.coordinate = CLLocationCoordinate2DMake([dict[@"lat"] doubleValue], [dict[@"lng"] doubleValue]);
+            annotation.title = dict[@"name"];
+            [_mapView addAnnotation:annotation];
+        }
         
     }
     return self;
@@ -49,6 +65,13 @@
 
 - (nonnull UIView *)view {
     return _mapView;
+}
+
+- (void)onMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
+    if ([[call method] isEqualToString:@"userLocation"]) {
+        NSDictionary *dict = [call arguments];
+        [_mapView setCenterCoordinate:CLLocationCoordinate2DMake([dict[@"lat"] doubleValue], [dict[@"lng"] doubleValue]) animated:YES];
+    }
 }
 
 @end

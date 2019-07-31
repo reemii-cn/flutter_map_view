@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:core' as prefix0;
 
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class MapViewController {
 
   final MethodChannel _channel;
 
-  Future<void> userLocation() async {
-    return _channel.invokeMethod('userLocation');
+  Future<void> userLocation(Map<String, dynamic> dict) async {
+    return _channel.invokeMethod('userLocation', dict);
   }
 }
