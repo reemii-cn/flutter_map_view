@@ -41,7 +41,7 @@
         _viewId = viewId;
         
         _mapView = [[MKMapView alloc] initWithFrame:frame];
-        _mapView.userTrackingMode = MKUserTrackingModeNone;
+        _mapView.showsUserLocation = YES;
         
         _manager = [[CLLocationManager alloc] init];
         _manager.delegate = self;
