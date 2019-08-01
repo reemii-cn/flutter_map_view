@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="898fb50a-eb33-412d-aa0b-798aa2d109b9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Classes/FlutterMapView.h" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/FlutterMapView.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Classes/FlutterMapView.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Classes/FlutterMapView.m" afterDir="false" />
-    </list>
+    <list default="true" id="898fb50a-eb33-412d-aa0b-798aa2d109b9" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.pub/" />
     <ignored path="$PROJECT_DIR$/build/" />
