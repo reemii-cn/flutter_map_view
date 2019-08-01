@@ -6,7 +6,6 @@
 //
 
 #import "FlutterMapView.h"
-#import <MapKit/MapKit.h>
 
 @implementation FlutterMapViewFactory {
     NSObject<FlutterBinaryMessenger>* _messenger;
@@ -44,6 +43,10 @@
         _mapView = [[MKMapView alloc] initWithFrame:frame];
         _mapView.userTrackingMode = MKUserTrackingModeNone;
         
+        _manager = [[CLLocationManager alloc] init];
+        _manager.delegate = self;
+        [_manager startUpdatingLocation];
+        
         NSString* channelName = [NSString stringWithFormat:@"flutter_map_view_%lld", viewId];
         FlutterMethodChannel *channel = [FlutterMethodChannel methodChannelWithName:channelName binaryMessenger:messenger];
         __weak __typeof__(self) weakSelf = self;
@@ -72,6 +75,15 @@
         NSDictionary *dict = [call arguments];
         [_mapView setCenterCoordinate:CLLocationCoordinate2DMake([dict[@"lat"] doubleValue], [dict[@"lng"] doubleValue]) animated:YES];
     }
+}
+
+// 定位一次获取司机位置 现在d在地图中心
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *location = locations.lastObject;
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.02, 0.02);
+    MKCoordinateRegion region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), span);
+    [_mapView setRegion:region animated:YES];
+    [_manager stopUpdatingLocation];
 }
 
 @end

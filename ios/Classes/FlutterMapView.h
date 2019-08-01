@@ -6,10 +6,13 @@
 //
 
 #import <Flutter/Flutter.h>
+#import <MapKit/MapKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FlutterMapView : NSObject<FlutterPlatformView>
+@interface FlutterMapView : NSObject<FlutterPlatformView, CLLocationManagerDelegate>
+
+@property (nonatomic, strong) CLLocationManager* manager;
 
 - (instancetype)initWithFrame:(CGRect)frame
                viewIdentifier:(int64_t)viewId
